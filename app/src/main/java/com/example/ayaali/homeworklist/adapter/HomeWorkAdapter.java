@@ -19,13 +19,13 @@ import java.util.List;
  * Created by AyaAli on 28/12/2017.
  */
 
-public class HomeWorkAdapter extends ArrayAdapter<String> {
+public class HomeWorkAdapter extends ArrayAdapter<HomeWork> {
 
     private List<HomeWork> homeWorks;
     private final Activity context;
 
     public HomeWorkAdapter(List<HomeWork> homeWorks, Activity context1) {
-        super(context1, R.layout.item_list);
+        super(context1, R.layout.item_list,homeWorks);
 
         this.homeWorks = homeWorks;
         this.context = context1;

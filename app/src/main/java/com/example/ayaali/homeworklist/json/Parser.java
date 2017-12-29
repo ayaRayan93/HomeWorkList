@@ -19,8 +19,8 @@ public class Parser {
         List<HomeWork> modelMovies;
 
         try {
-            JSONObject jsonObject = new JSONObject(data);
-            JSONArray jsonArray = jsonObject.optJSONArray("");
+
+            JSONArray jsonArray = new JSONArray(data);
             modelMovies = new ArrayList<>();
 
             for (int i = 0; i < jsonArray.length(); i++) {

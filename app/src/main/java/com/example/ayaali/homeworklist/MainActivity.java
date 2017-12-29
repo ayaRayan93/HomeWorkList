@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 
 import com.android.volley.Cache;
 import com.android.volley.Request;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         dataSet = new ArrayList<>();
         initiateRefresh();
+        HomeWorkAdapter adapterList=new HomeWorkAdapter(dataSet,this);
+        ListView listView=(ListView)findViewById(R.id.list);
+        listView.setAdapter(adapterList);
     }
     public  void initiateRefresh()
     {
