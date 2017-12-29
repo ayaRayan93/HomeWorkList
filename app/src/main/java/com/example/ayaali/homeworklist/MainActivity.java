@@ -1,9 +1,12 @@
 package com.example.ayaali.homeworklist;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import com.android.volley.Cache;
@@ -13,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.ayaali.homeworklist.adapter.HomeWorkAdapter;
 import com.example.ayaali.homeworklist.app.AppController;
+import com.example.ayaali.homeworklist.fragment.ListFragment;
 import com.example.ayaali.homeworklist.json.Parser;
 import com.example.ayaali.homeworklist.models.HomeWork;
 
@@ -29,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dataSet = new ArrayList<>();
-        initiateRefresh();
-        HomeWorkAdapter adapterList=new HomeWorkAdapter(dataSet,this);
-        ListView listView=(ListView)findViewById(R.id.list);
-        listView.setAdapter(adapterList);
+
+        ListFragment listitemsfragment=new ListFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.item_container, listitemsfragment).commit();
     }
-    public  void initiateRefresh()
+
+
+  public  void initiateRefresh()
     {
         String Url;
 
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
          * Execute the background task, which uses {@link AsyncTask} to load the data.
          */
         // We first check for cached request
+
         Cache cache = AppController.getInstance().getRequestQueue().getCache();
         Cache.Entry entry = cache.get(Url);
         if (entry != null) {
@@ -75,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                 while (iterator.hasNext()){
                     HomeWork movie = (HomeWork)iterator.next();
                     dataSet.add(movie);
+
+
                 }
             }
         }, new Response.ErrorListener() {
