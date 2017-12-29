@@ -20,14 +20,14 @@ public class Parser {
 
         try {
             JSONObject jsonObject = new JSONObject(data);
-            JSONArray jsonArray = jsonObject.optJSONArray("results");
+            JSONArray jsonArray = jsonObject.optJSONArray("");
             modelMovies = new ArrayList<>();
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject movieJsonObject = jsonArray.getJSONObject(i);
 
-                String date = movieJsonObject.optString("release_date");
-                String title = movieJsonObject.optString("original_title");
+                String date = movieJsonObject.optString("UpdateDate");
+                String title = movieJsonObject.optString("Name");
 
 
 
